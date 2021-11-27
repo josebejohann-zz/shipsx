@@ -1,15 +1,16 @@
 import { Ship } from '../types/Ship';
 
-export function parseDataToCSV(ships: Ship) {
-  const header = ["ship,missions"];
+function parseDataToCSV(ships: Ship) {
+  const header = ['ship,missions'];
+  const rows = ships.filter((ship) => ship.active).map((ship) => {
+    const missions = ship.missions.map((mission) => mission.name);
 
-  const rows = ships.map((ship) => {
-    const missions = ship.missions.map((mission) => mission.name)
+    const missionsNames = missions.join(';');
 
-    const missionsNames = missions.join(';')
-
-    return `${ship.name},${missionsNames}`
+    return `${ship.name},${missionsNames}`;
   });
 
-  return header.concat(rows).join("\n");
+  return header.concat(rows).join('\n');
 }
+
+export default parseDataToCSV;

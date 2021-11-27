@@ -1,18 +1,19 @@
-import { parseDataToCSV } from '../../helpers/parseDataToCSV';
+import parseDataToCSV from '../../helpers/parseDataToCSV';
 
 describe('Tests parseDataToCSV helper function', () => {
   it('should parse JSON data to CSV format', () => {
     const data = [
       {
-        name: "Ship",
+        active: true,
+        name: 'Ship',
         missions: [
           {
-            name: "Mission"
-          }
-        ]
-      }
-    ]
+            name: 'Mission',
+          },
+        ],
+      },
+    ];
 
-    expect(parseDataToCSV(data)).toBe("ship,missions\nShip,Mission")
-  })
-})
+    expect(parseDataToCSV(data)).toBe('ship,missions\nShip,Mission');
+  });
+});

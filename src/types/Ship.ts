@@ -1,8 +1,9 @@
-export type Ship = {
-  name: string;
-  missions: Mission;
-}[]
-
 export type Mission = {
   name: string;
-}[]
+}[];
+
+export type Ship = {
+  active?: boolean;
+  name: string;
+  missions: Mission;
+}[];
