@@ -1,3 +1,3 @@
-import { readCSVFile } from './helpers/readCSVFile';
+import readCSVFile from './helpers/readCSVFile';
 
-readCSVFile()
+readCSVFile();

@@ -1,25 +1,27 @@
-import fs from 'fs'
-import csv from 'csv-parser'
+import fs from 'fs';
+import csv from 'csv-parser';
 
-import { writeDataToCSV } from './writeDataToCSV'
-import { Ship } from '../types/Ship'
+import writeDataToCSV from './writeDataToCSV';
+import { Ship } from '../types/Ship';
 
-let ships: Ship = []
+const ships: Ship = [];
 
-export async function readCSVFile() {
-  await writeDataToCSV()
+async function readCSVFile() {
+  await writeDataToCSV();
 
   fs.createReadStream('/tmp/ships.csv')
     .pipe(csv({}))
     .on('data', (row) => {
       const ship = {
         name: row.ship,
-        missions: row.missions.split(';')
-      }
+        missions: row.missions.split(';'),
+      };
 
-      ships.push(ship)
+      ships.push(ship);
     })
     .on('end', () => {
-      console.table(ships)
-    })
+      console.table(ships);
+    });
 }
+
+export default readCSVFile;
